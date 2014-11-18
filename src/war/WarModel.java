@@ -2,6 +2,7 @@ package war;
 
 /**
  * Assignment #10
+ * Represents the actually progression and handling of a War game and it's rules.
  *
  * @author Walker Crouse
  */

@@ -2,19 +2,28 @@ package war;
 
 /**
  * Assignment #10
+ * Represents a playing card that is comparable to other cards. A card is considered greater than another card if it's
+ * rank is greater than the other.
  *
  * @author Walker Crouse
  */
 public class Card implements Comparable<Card> {
+    // Ranks
     public static final int RANK_JACK = 11;
     public static final int RANK_QUEEN = 12;
     public static final int RANK_KING = 13;
     public static final int RANK_ACE = 14;
 
-    private final int rank;
-    private final Suit suit;
-    private boolean faceUp = true;
+    protected final int rank;
+    protected final Suit suit;
+    protected boolean faceUp = true;
 
+    /**
+     * Constructs a new Card.
+     *
+     * @param rank of card (between 2 and 14 (inclusive))
+     * @param suit of card
+     */
     public Card(int rank, Suit suit) {
         if (rank < 2 || rank > RANK_ACE)
             throw new IllegalArgumentException("Card rank must be between 2 and 14 (RANK_ACE)");
@@ -22,20 +31,47 @@ public class Card implements Comparable<Card> {
         this.suit = suit;
     }
 
+    /**
+     * Returns this card's rank.
+     *
+     * @return rank of card
+     */
     public int getRank() {
         return rank;
     }
 
+    /**
+     * Returns this card's suit.
+     *
+     * @return card's suit
+     */
     public Suit getSuit() {
         return suit;
     }
 
+    /**
+     * Returns true if this card is face up.
+     *
+     * @return true if face up
+     */
     public boolean isFaceUp() {
         return faceUp;
     }
 
+    /**
+     * Sets if this card is face up or face down.
+     *
+     * @param faceUp true if should be face up
+     */
     public void setFaceUp(boolean faceUp) {
         this.faceUp = faceUp;
+    }
+
+    /**
+     * Flips the card.
+     */
+    public void flip() {
+        setFaceUp(!faceUp);
     }
 
     @Override
@@ -43,6 +79,9 @@ public class Card implements Comparable<Card> {
         return rank - card.rank;
     }
 
+    /**
+     * Represents a playing card's suit.
+     */
     public static enum Suit {
         SPADES,
         CLUBS,
