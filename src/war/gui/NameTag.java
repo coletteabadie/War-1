@@ -15,9 +15,9 @@ import java.awt.event.MouseEvent;
  * @author Walker Crouse
  */
 public class NameTag extends JPanel {
-    private Player player;
     private final JLabel label = new JLabel();
     private final JTextField textField = new JTextField();
+    private Player player;
     private boolean editing = false;
 
     /**
