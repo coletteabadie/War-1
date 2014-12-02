@@ -21,6 +21,8 @@ public class HeaderPanel extends JPanel {
 
     /**
      * Creates a new header panel.
+     *
+     * @param model to use as a reference
      */
     public HeaderPanel(WarModel model) {
         super(new BorderLayout());
