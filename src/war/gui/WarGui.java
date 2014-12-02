@@ -7,8 +7,6 @@ import war.WarView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 
 /**
  * Assignment #10
@@ -36,32 +34,11 @@ public class WarGui extends JPanel implements WarView, Runnable {
         add(controls, BorderLayout.SOUTH);
     }
 
-    private JMenuBar createMenuBar() {
-        // create menu
-        JMenuBar menuBar = new JMenuBar();
-
-        // file menu
-        JMenu fileMenu = new JMenu("File");
-        fileMenu.setMnemonic(KeyEvent.VK_F);
-        menuBar.add(fileMenu);
-
-        // "new game" item
-        JMenuItem newGame = new JMenuItem("New game", KeyEvent.VK_N);
-        newGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-        fileMenu.add(newGame);
-        newGame.addActionListener(a -> model.newGame());
-
-        return menuBar;
-    }
-
     @Override
     public void run() {
         // create window
         JFrame frame = new JFrame(FRAME_TITLE);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        // add menu to frame
-        frame.setJMenuBar(createMenuBar());
 
         // add content
         frame.setContentPane(this);
@@ -76,20 +53,34 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
     @Override
     public void onGameStart() {
+        // enable draw button and update stats
         controls.getDrawButton().setEnabled(true);
+        controls.updateStats();
+
+        // clear board
+        PlayerPanel p1 = table.getPlayerPanel(true);
+        p1.getBattlePanel().setVisible(false);
+        p1.getWarPanel().setVisible(false);
+
+        PlayerPanel p2 = table.getPlayerPanel(false);
+        p2.getBattlePanel().setVisible(false);
+        p2.getWarPanel().setVisible(false);
+
+        // set welcome message
+        header.setMessage(HeaderPanel.MESSAGE_WELCOME);
     }
 
     @Override
     public void onTurnStart(Card card1, Card card2) {
+        // clear "war panel" if displayed
         if (!model.isWar()) {
             table.getPlayerPanel(true).getWarPanel().setVisible(false);
             table.getPlayerPanel(false).getWarPanel().setVisible(false);
         }
 
+        // show drawn cards
         table.getPlayerPanel(true).getBattlePanel().showCard(card1);
         table.getPlayerPanel(false).getBattlePanel().showCard(card2);
-
-        controls.setPoolCount(model.poolCount());
 
         // remove deck image if player is on last card
         Player p1 = model.getPlayer(true), p2 = model.getPlayer(false);
@@ -100,19 +91,24 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
     @Override
     public void onWarStart() {
+        // set title
         header.setMessage(FRAME_TITLE);
+        // disable draw button
         controls.getDrawButton().setEnabled(false);
+        // enable mobilize button
         controls.getMobilizeButton().setEnabled(true);
-        controls.setPoolCount(model.poolCount());
-        controls.setCardCount(model.getPlayer(true).cardsLeft(), model.getPlayer(false).cardsLeft());
+        // update stats
+        controls.updateStats();
     }
 
     private Card mobilized1, mobilized2;
 
     @Override
     public void onMobilize(Card card1, Card card2) {
+        // save cards for later
         mobilized1 = card1;
         mobilized2 = card2;
+
 
         PlayerPanel p1 = table.getPlayerPanel(true), p2 = table.getPlayerPanel(false);
         p1.getBattlePanel().setVisible(false);
@@ -121,9 +117,9 @@ public class WarGui extends JPanel implements WarView, Runnable {
         p1.getWarPanel().showBack();
         p2.getWarPanel().showBack();
 
-        controls.setPoolCount(model.poolCount());
         controls.getMobilizeButton().setEnabled(false);
         controls.getDrawButton().setEnabled(true);
+        controls.updateStats();
     }
 
     @Override
@@ -135,14 +131,14 @@ public class WarGui extends JPanel implements WarView, Runnable {
     @Override
     public void onTurnEnd(Card card1, Card card2, Player winner) {
         header.setMessage(HeaderPanel.MESSAGE_TURN_OVER, winner.getName());
-        controls.setCardCount(model.getPlayer(true).cardsLeft(), model.getPlayer(false).cardsLeft());
+        controls.updateStats();
     }
 
     @Override
     public void onGameOver(Player winner) {
         header.setMessage(HeaderPanel.MESSAGE_GAME_OVER, winner.getName());
         controls.getDrawButton().setEnabled(false);
-        controls.setPoolCount(model.poolCount());
+        controls.updateStats();
     }
 
     public static void main(String[] args) {

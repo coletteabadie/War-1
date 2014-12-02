@@ -21,6 +21,7 @@ public class WarModel {
     public void newGame() {
         gameOver = false;
         war = false;
+        pool.clear();
 
         // create a standard deck of cards
         List<Card> deck = Card.all();
