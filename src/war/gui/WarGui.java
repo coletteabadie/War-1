@@ -124,9 +124,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
     @Override
     public void onTurnStart(Card card1, Card card2) {
         // clear "war panel" if displayed
-        if (!model.isWar()) {
-            table.reset();
-        }
+        table.reset();
 
         // show drawn cards
         table.showCards(card1, card2);
