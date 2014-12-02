@@ -44,7 +44,7 @@ public class ControlPanel extends JPanel {
         buttons.add(newGameBtn, BorderLayout.WEST);
         newGameBtn.addActionListener(a -> model.newGame());
 
-        // add "autoplay" button
+        // add "auto-play" button
         JButton autoPlayBtn = new JButton("Auto-play");
         buttons.add(autoPlayBtn, BorderLayout.EAST);
         autoPlayBtn.addActionListener(a -> {
