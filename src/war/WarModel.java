@@ -146,15 +146,6 @@ public class WarModel {
     }
 
     /**
-     * Returns the amount of cards in the pool.
-     *
-     * @return amount of cards in the pool
-     */
-    public int poolCount() {
-        return pool.size();
-    }
-
-    /**
      * Returns player 1 if p1 is true, player 2 otherwise.
      *
      * @param p1 true if should return player 1
