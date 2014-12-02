@@ -37,7 +37,7 @@ public class WarSimulator implements Runnable {
     public void run() {
         // start a game
         model.newGame();
-        JButton newGameBtn = gui.getControls().getNewGameBtn();
+        JButton newGameBtn = gui.getControls().getNewGameButton();
         newGameBtn.setEnabled(false);
         // press buttons until the game is over or cancelled
         while (!model.isGameOver() && !cancel)

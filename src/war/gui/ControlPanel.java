@@ -21,7 +21,7 @@ public class ControlPanel extends JPanel {
      * Creates a new control panel.
      *
      * @param model to control
-     * @param gui being used
+     * @param gui   being used
      */
     public ControlPanel(WarModel model, WarGui gui) {
         super(new BorderLayout());
@@ -83,14 +83,14 @@ public class ControlPanel extends JPanel {
      *
      * @return new game button
      */
-    public JButton getNewGameBtn() {
+    public JButton getNewGameButton() {
         return newGameBtn;
     }
 
     /**
      * Sets the action to run when the button is clicked.
      *
-     * @param name of action
+     * @param name   of action
      * @param action to run
      */
     public void setAction(String name, Runnable action) {
