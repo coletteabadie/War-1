@@ -22,7 +22,7 @@ In this variant of War, both players place a single card face-down and a single 
 
 ## Design
 
-This program is designed from a "model-view" point of view. The core class, WarModel, tracks the game as it progresses and sends notifications to the implementation of WarView, which in this case, is WarGui. The WarGui class is made up of a collection of JPanel subclasses which make up the GUI for the player to interact with to play the game.
+This program is designed from a "model-view" point of view. The core class, WarModel, tracks the game as it progresses and sends notifications to the implementation of WarView, which in this case, is WarGui. The WarGui, in turn, updates the GUI to reflect changes in the current game. The WarGui class is made up of a collection of JPanel subclasses which make up the GUI for the player to interact with to play the game.
 
 ### WarSimulator
 
