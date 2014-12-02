@@ -2,6 +2,8 @@ package war.gui;
 
 import war.WarModel;
 
+import javax.swing.*;
+
 /**
  * Assignment #10
  * Represents a runnable that can simulate a game.
@@ -35,8 +37,11 @@ public class WarSimulator implements Runnable {
     public void run() {
         // start a game
         model.newGame();
+        JButton newGameBtn = gui.getControls().getNewGameBtn();
+        newGameBtn.setEnabled(false);
         // press buttons until the game is over or cancelled
         while (!model.isGameOver() && !cancel)
             gui.getControls().getActionButton().doClick();
+        newGameBtn.setEnabled(true);
     }
 }

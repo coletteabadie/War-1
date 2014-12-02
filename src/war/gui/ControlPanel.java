@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class ControlPanel extends JPanel {
     private final WarModel model;
-    private JButton actionBtn = new JButton();
+    private JButton actionBtn = new JButton(), newGameBtn = new JButton("New Game");
     private Runnable action;
     private JLabel cardCount1 = new JLabel("26"), cardCount2 = new JLabel("26");
 
@@ -41,7 +41,6 @@ public class ControlPanel extends JPanel {
         actionBtn.addActionListener(a -> action.run());
 
         // add "new game" button
-        JButton newGameBtn = new JButton("New Game");
         buttons.add(newGameBtn, BorderLayout.WEST);
         newGameBtn.addActionListener(a -> model.newGame());
 
@@ -76,6 +75,15 @@ public class ControlPanel extends JPanel {
      */
     public JButton getActionButton() {
         return actionBtn;
+    }
+
+    /**
+     * Returns the "New Game" button.
+     *
+     * @return new game button
+     */
+    public JButton getNewGameBtn() {
+        return newGameBtn;
     }
 
     /**
