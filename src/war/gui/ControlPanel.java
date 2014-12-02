@@ -13,9 +13,10 @@ import java.awt.*;
  */
 public class ControlPanel extends JPanel {
     private final WarModel model;
-    private JButton actionBtn = new JButton(), newGameBtn = new JButton("New Game");
+    private final JButton actionBtn = new JButton(), newGameBtn = new JButton("New Game");
+    private final JButton autoPlayBtn = new JButton("Auto-play");
+    private final JLabel cardCount1 = new JLabel("26"), cardCount2 = new JLabel("26");
     private Runnable action;
-    private JLabel cardCount1 = new JLabel("26"), cardCount2 = new JLabel("26");
 
     /**
      * Creates a new control panel.
@@ -46,7 +47,6 @@ public class ControlPanel extends JPanel {
         newGameBtn.addActionListener(a -> model.newGame());
 
         // add "auto-play" button
-        JButton autoPlayBtn = new JButton("Auto-play");
         buttons.add(autoPlayBtn, BorderLayout.EAST);
         autoPlayBtn.addActionListener(a -> {
             if (gui.getActiveSimulator() == null) {
@@ -59,6 +59,15 @@ public class ControlPanel extends JPanel {
         });
 
         add(buttons, BorderLayout.CENTER);
+    }
+
+    /**
+     * Returns the "Auto-play" button.
+     *
+     * @return auto-play button
+     */
+    public JButton getAutoPlayButton() {
+        return autoPlayBtn;
     }
 
     /**

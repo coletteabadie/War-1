@@ -17,7 +17,7 @@ import java.awt.*;
 public class WarGui extends JPanel implements WarView, Runnable {
     public static final String FRAME_TITLE = "War!";
     private final WarModel model = new WarModel(this);
-    private final HeaderPanel header = new HeaderPanel();
+    private final HeaderPanel header = new HeaderPanel(model);
     private final TablePanel table = new TablePanel();
     private final ControlPanel controls = new ControlPanel(model, this);
     private WarSimulator sim;
@@ -53,6 +53,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
     public void stopSimulator() {
         sim.cancel();
         sim = null;
+        controls.getAutoPlayButton().setText("Auto-play");
     }
 
     /**
@@ -119,6 +120,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
         // set welcome message
         header.setMessage(HeaderPanel.MESSAGE_WELCOME);
+        header.updateNameTags();
     }
 
     @Override
