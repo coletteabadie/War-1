@@ -21,7 +21,7 @@ public class ControlPanel extends JPanel {
      *
      * @param model to control
      */
-    public ControlPanel(WarModel model) {
+    public ControlPanel(WarModel model, WarGui gui) {
         super(new BorderLayout());
         this.model = model;
 
@@ -43,10 +43,27 @@ public class ControlPanel extends JPanel {
         buttons.add(mobilizeButton, BorderLayout.CENTER);
         mobilizeButton.addActionListener(a -> model.mobilize());
 
+        JPanel bottom = new JPanel(new BorderLayout());
+
         // add "new game" button
         JButton newGameBtn = new JButton("New Game");
-        buttons.add(newGameBtn, BorderLayout.SOUTH);
+        bottom.add(newGameBtn, BorderLayout.WEST);
         newGameBtn.addActionListener(a -> model.newGame());
+
+        // add "autoplay" button
+        JButton autoPlayBtn = new JButton("Auto-play");
+        bottom.add(autoPlayBtn, BorderLayout.EAST);
+        autoPlayBtn.addActionListener(a -> {
+            if (gui.getActiveSimulator() == null) {
+                gui.startSimulator();
+                autoPlayBtn.setText("Cancel");
+            } else {
+                gui.stopSimulator();
+                autoPlayBtn.setText("Auto-play");
+            }
+        });
+
+        buttons.add(bottom, BorderLayout.SOUTH);
 
         add(buttons, BorderLayout.CENTER);
     }
