@@ -21,6 +21,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
     private final TablePanel table = new TablePanel();
     private final ControlPanel controls = new ControlPanel(model, this);
     private WarSimulator sim;
+    private Card mobilized1, mobilized2;
 
     /**
      * Creates and initializes the game.
@@ -33,6 +34,10 @@ public class WarGui extends JPanel implements WarView, Runnable {
         add(table, BorderLayout.CENTER);
         // add control panel
         add(controls, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new WarGui());
     }
 
     /**
@@ -141,8 +146,6 @@ public class WarGui extends JPanel implements WarView, Runnable {
         controls.updateStats();
     }
 
-    private Card mobilized1, mobilized2;
-
     @Override
     public void onMobilize(Card card1, Card card2) {
         // save cards for later
@@ -185,9 +188,5 @@ public class WarGui extends JPanel implements WarView, Runnable {
         header.setMessage(HeaderPanel.MESSAGE_GAME_OVER, winner.getName());
         controls.getActionButton().setEnabled(false);
         controls.updateStats();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new WarGui());
     }
 }

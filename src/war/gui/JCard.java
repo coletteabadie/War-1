@@ -20,10 +20,10 @@ public class JCard extends Card {
     /**
      * Constructs a new card.
      *
-     * @param rank of card (between 2 and 14 (inclusive))
-     * @param suit of card
+     * @param rank       of card (between 2 and 14 (inclusive))
+     * @param suit       of card
      * @param frontImage image to display when card is face up
-     * @param backImage image to display when card is face down
+     * @param backImage  image to display when card is face down
      */
     public JCard(int rank, Suit suit, ImageIcon frontImage, ImageIcon backImage) {
         super(rank, suit);
@@ -35,10 +35,10 @@ public class JCard extends Card {
     /**
      * Constructs a new card.
      *
-     * @param rank of card (between 2 and 14 (inclusive))
-     * @param suit of card
+     * @param rank       of card (between 2 and 14 (inclusive))
+     * @param suit       of card
      * @param frontImage image to display when card is face up
-     * @param backImage image to display when card is face down
+     * @param backImage  image to display when card is face down
      */
     public JCard(int rank, Suit suit, String frontImage, String backImage) {
         this(rank, suit, new ImageIcon(frontImage), new ImageIcon(backImage));
@@ -47,8 +47,8 @@ public class JCard extends Card {
     /**
      * Constructs a new card. This constructor uses the default back image.
      *
-     * @param rank of card (between 2 and 14 (inclusive))
-     * @param suit of card
+     * @param rank       of card (between 2 and 14 (inclusive))
+     * @param suit       of card
      * @param frontImage image to display when card is face up
      */
     public JCard(int rank, Suit suit, ImageIcon frontImage) {
@@ -58,8 +58,8 @@ public class JCard extends Card {
     /**
      * Constructs a new card. This constructor uses the default back image.
      *
-     * @param rank of card (between 2 and 14 (inclusive))
-     * @param suit of card
+     * @param rank       of card (between 2 and 14 (inclusive))
+     * @param suit       of card
      * @param frontImage image to display when card is face up
      */
     public JCard(int rank, Suit suit, String frontImage) {
@@ -87,6 +87,11 @@ public class JCard extends Card {
         setFaceUp(card.isFaceUp());
     }
 
+    private static String defaultImageName(int rank, Suit suit) {
+        // infer the filename from rank and suit
+        return DEFAULT_IMAGE_DIRECTORY + "/" + new Card(rank, suit).toString() + ".png";
+    }
+
     /**
      * Returns the {@link JLabel} to add to the screen.
      *
@@ -112,11 +117,6 @@ public class JCard extends Card {
      */
     public ImageIcon getBackImage() {
         return backImage;
-    }
-
-    private static String defaultImageName(int rank, Suit suit) {
-        // infer the filename from rank and suit
-        return DEFAULT_IMAGE_DIRECTORY + "/" + new Card(rank, suit).toString() + ".png";
     }
 
     private void flipImage() {

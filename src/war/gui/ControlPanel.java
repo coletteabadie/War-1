@@ -12,10 +12,10 @@ import java.awt.*;
  * @author Walker Crouse
  */
 public class ControlPanel extends JPanel {
+    private final WarModel model;
     private JButton actionBtn = new JButton();
     private Runnable action;
     private JLabel cardCount1 = new JLabel("26"), cardCount2 = new JLabel("26");
-    private final WarModel model;
 
     /**
      * Creates a new control panel.

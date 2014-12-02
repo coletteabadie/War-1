@@ -35,6 +35,20 @@ public class Card implements Comparable<Card> {
     }
 
     /**
+     * Returns a list of all possible unique {@link Card}s.
+     *
+     * @return list of all cards
+     */
+    public static List<Card> all() {
+        List<Card> cards = new ArrayList<>(52);
+        for (int rank = 2; rank <= RANK_ACE; rank++) {
+            for (Suit suit : Suit.values())
+                cards.add(new Card(rank, suit));
+        }
+        return cards;
+    }
+
+    /**
      * Returns this card's rank.
      *
      * @return rank of card
@@ -85,20 +99,6 @@ public class Card implements Comparable<Card> {
     @Override
     public String toString() {
         return "" + suit.toString().toLowerCase().charAt(0) + rank;
-    }
-
-    /**
-     * Returns a list of all possible unique {@link Card}s.
-     *
-     * @return list of all cards
-     */
-    public static List<Card> all() {
-        List<Card> cards = new ArrayList<>(52);
-        for (int rank = 2; rank <= RANK_ACE; rank++) {
-            for (Suit suit : Suit.values())
-                cards.add(new Card(rank, suit));
-        }
-        return cards;
     }
 
     /**

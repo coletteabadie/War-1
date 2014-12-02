@@ -41,8 +41,8 @@ public interface WarView {
     /**
      * Called when a turn ends.
      *
-     * @param card1 card player 1 drew
-     * @param card2 card player 2 drew
+     * @param card1  card player 1 drew
+     * @param card2  card player 2 drew
      * @param winner player that one the battle
      */
     public void onTurnEnd(Card card1, Card card2, Player winner);

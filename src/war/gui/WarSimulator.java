@@ -17,7 +17,7 @@ public class WarSimulator implements Runnable {
      * Creates a new simulator.
      *
      * @param model to use
-     * @param gui to use
+     * @param gui   to use
      */
     public WarSimulator(WarModel model, WarGui gui) {
         this.model = model;

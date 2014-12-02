@@ -27,7 +27,7 @@ public class HeaderPanel extends JPanel {
      * Sets the message displayed in the header.
      *
      * @param message to display
-     * @param args to format with
+     * @param args    to format with
      */
     public void setMessage(String message, Object... args) {
         this.message.setText(String.format(message, args));
