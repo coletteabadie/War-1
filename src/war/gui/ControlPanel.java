@@ -71,6 +71,14 @@ public class ControlPanel extends JPanel {
     }
 
     /**
+     * Resets the buttons to their default state.
+     */
+    public void reset() {
+        setAction("Draw", model::nextTurn);
+        autoPlayBtn.setText("Auto-play");
+    }
+
+    /**
      * Synchronizes the card counts from the model with the GUI.
      */
     public void updateStats() {

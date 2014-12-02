@@ -16,6 +16,7 @@ import java.awt.*;
  */
 public class WarGui extends JPanel implements WarView, Runnable {
     public static final String FRAME_TITLE = "War!";
+    public static final Dimension FRAME_SIZE = new Dimension(600, 300);
     private final WarModel model = new WarModel(this);
     private final HeaderPanel header = new HeaderPanel(model);
     private final TablePanel table = new TablePanel();
@@ -51,8 +52,10 @@ public class WarGui extends JPanel implements WarView, Runnable {
      * Stops the auto-play.
      */
     public void stopSimulator() {
+        // cancel simulator and set to null
         sim.cancel();
         sim = null;
+        // reset auto-play button text
         controls.getAutoPlayButton().setText("Auto-play");
     }
 
@@ -102,7 +105,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
         frame.setContentPane(this);
 
         // display window
-        frame.pack();
+        frame.setSize(FRAME_SIZE);
         frame.setVisible(true);
 
         // automatically start a new game
@@ -117,6 +120,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
         // clear board
         table.reset();
+        controls.reset();
 
         // set welcome message
         header.setMessage(HeaderPanel.MESSAGE_WELCOME);

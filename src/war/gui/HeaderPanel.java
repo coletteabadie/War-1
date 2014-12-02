@@ -17,7 +17,7 @@ public class HeaderPanel extends JPanel {
     public static final String MESSAGE_GAME_OVER = "Game Over! %s is the winner!";
     private final WarModel model;
     private final JLabel message = new JLabel(MESSAGE_WELCOME, SwingConstants.CENTER);
-    private final JLabel nameTag1 = new JLabel(), nameTag2 = new JLabel();
+    private final NameTag nameTag1 = new NameTag(), nameTag2 = new NameTag();
 
     /**
      * Creates a new header panel.
@@ -45,7 +45,7 @@ public class HeaderPanel extends JPanel {
      * Updates the name tags to reflect the player's actual names.
      */
     public void updateNameTags() {
-        nameTag1.setText(model.getPlayer(true).getName());
-        nameTag2.setText(model.getPlayer(false).getName());
+        nameTag1.setPlayer(model.getPlayer(true));
+        nameTag2.setPlayer(model.getPlayer(false));
     }
 }

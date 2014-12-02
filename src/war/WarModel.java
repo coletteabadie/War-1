@@ -14,7 +14,7 @@ import java.util.List;
 public class WarModel {
     private final WarView view;
     private Player player1, player2;
-    private List<Card> pool = new ArrayList<>();
+    private final List<Card> pool = new ArrayList<>();
     private boolean gameOver = true, war = false;
 
     /**
