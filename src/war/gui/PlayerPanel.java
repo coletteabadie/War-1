@@ -5,6 +5,7 @@ import java.awt.*;
 
 /**
  * Assignment #10
+ * Represents a players "hand"
  *
  * @author Walker Crouse
  */
@@ -12,23 +13,44 @@ public class PlayerPanel extends JPanel {
     private final JLabel deck;
     private final CardPanel battlePanel, warPanel;
 
-    public PlayerPanel(int horizontalAlignment) {
+    /**
+     * Creates a new player.
+     *
+     * @param p1 true if player 1's panel
+     */
+    public PlayerPanel(boolean p1) {
         super(new GridLayout(1, 3));
         setOpaque(false);
 
+        int ha = p1 ? SwingConstants.LEFT : SwingConstants.RIGHT;
         add(deck = new JLabel(JCard.DEFAULT_BACK_IMAGE));
-        add(battlePanel = new CardPanel(horizontalAlignment));
-        add(warPanel = new CardPanel(horizontalAlignment));
+        add(battlePanel = new CardPanel(ha));
+        add(warPanel = new CardPanel(ha));
     }
 
+    /**
+     * Returns the "deck" label.
+     *
+     * @return deck label
+     */
     public JLabel getDeck() {
         return deck;
     }
 
+    /**
+     * Returns the panel for the "battle" slot.
+     *
+     * @return panel for battle slot
+     */
     public CardPanel getBattlePanel() {
         return battlePanel;
     }
 
+    /**
+     * Returns the panel for the "war" slot.
+     *
+     * @return panel for war slot
+     */
     public CardPanel getWarPanel() {
         return warPanel;
     }

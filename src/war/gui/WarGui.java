@@ -58,13 +58,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
         controls.updateStats();
 
         // clear board
-        PlayerPanel p1 = table.getPlayerPanel(true);
-        p1.getBattlePanel().setVisible(false);
-        p1.getWarPanel().setVisible(false);
-
-        PlayerPanel p2 = table.getPlayerPanel(false);
-        p2.getBattlePanel().setVisible(false);
-        p2.getWarPanel().setVisible(false);
+        table.reset();
 
         // set welcome message
         header.setMessage(HeaderPanel.MESSAGE_WELCOME);
@@ -74,19 +68,15 @@ public class WarGui extends JPanel implements WarView, Runnable {
     public void onTurnStart(Card card1, Card card2) {
         // clear "war panel" if displayed
         if (!model.isWar()) {
-            table.getPlayerPanel(true).getWarPanel().setVisible(false);
-            table.getPlayerPanel(false).getWarPanel().setVisible(false);
+            table.reset();
         }
 
         // show drawn cards
-        table.getPlayerPanel(true).getBattlePanel().showCard(card1);
-        table.getPlayerPanel(false).getBattlePanel().showCard(card2);
+        table.showCards(card1, card2);
 
         // remove deck image if player is on last card
-        Player p1 = model.getPlayer(true), p2 = model.getPlayer(false);
-        JLabel deck1 = table.getPlayerPanel(true).getDeck(), deck2 = table.getPlayerPanel(false).getDeck();
-        deck1.setVisible(p1.hasCard());
-        deck2.setVisible(p2.hasCard());
+        table.getPlayerPanel(true).getDeck().setVisible(model.getPlayer(true).hasCard());
+        table.getPlayerPanel(false).getDeck().setVisible(model.getPlayer(false).hasCard());
     }
 
     @Override
@@ -109,14 +99,16 @@ public class WarGui extends JPanel implements WarView, Runnable {
         mobilized1 = card1;
         mobilized2 = card2;
 
-
+        // hide "battle" pane
         PlayerPanel p1 = table.getPlayerPanel(true), p2 = table.getPlayerPanel(false);
         p1.getBattlePanel().setVisible(false);
         p2.getBattlePanel().setVisible(false);
 
+        // show card back in "war" pane
         p1.getWarPanel().showBack();
         p2.getWarPanel().showBack();
 
+        // disable mobilize button and enable draw button
         controls.getMobilizeButton().setEnabled(false);
         controls.getDrawButton().setEnabled(true);
         controls.updateStats();
@@ -124,12 +116,14 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
     @Override
     public void onWarEnd() {
+        // reveal hidden cards
         table.getPlayerPanel(true).getWarPanel().showCard(mobilized1);
         table.getPlayerPanel(false).getWarPanel().showCard(mobilized2);
     }
 
     @Override
     public void onTurnEnd(Card card1, Card card2, Player winner) {
+        // set winner message
         header.setMessage(HeaderPanel.MESSAGE_TURN_OVER, winner.getName());
         controls.updateStats();
     }
