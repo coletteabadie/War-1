@@ -1,5 +1,8 @@
 package war;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Assignment #10
  * Represents a playing card that is comparable to other cards. A card is considered greater than another card if it's
@@ -77,6 +80,25 @@ public class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card card) {
         return rank - card.rank;
+    }
+
+    @Override
+    public String toString() {
+        return "" + suit.toString().toLowerCase().charAt(0) + rank;
+    }
+
+    /**
+     * Returns a list of all possible unique {@link Card}s.
+     *
+     * @return list of all cards
+     */
+    public static List<Card> all() {
+        List<Card> cards = new ArrayList<>(52);
+        for (int rank = 2; rank <= RANK_ACE; rank++) {
+            for (Suit suit : Suit.values())
+                cards.add(new Card(rank, suit));
+        }
+        return cards;
     }
 
     /**

@@ -78,6 +78,16 @@ public class JCard extends Card {
     }
 
     /**
+     * Creates a JCard from a regular card.
+     *
+     * @param card to use to construct a JCard
+     */
+    public JCard(Card card) {
+        this(card.getRank(), card.getSuit());
+        setFaceUp(card.isFaceUp());
+    }
+
+    /**
      * Returns the {@link JLabel} to add to the screen.
      *
      * @return label to attach
@@ -106,7 +116,7 @@ public class JCard extends Card {
 
     private static String defaultImageName(int rank, Suit suit) {
         // infer the filename from rank and suit
-        return DEFAULT_IMAGE_DIRECTORY + "/" + suit.toString().toLowerCase().charAt(0) + rank + ".png";
+        return DEFAULT_IMAGE_DIRECTORY + "/" + new Card(rank, suit).toString() + ".png";
     }
 
     private void flipImage() {
