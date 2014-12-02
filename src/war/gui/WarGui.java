@@ -16,6 +16,7 @@ import java.awt.*;
  */
 public class WarGui extends JPanel implements WarView, Runnable {
     public static final String FRAME_TITLE = "War!";
+    private static final boolean AUTO_PLAY = true;
     private final WarModel model = new WarModel(this);
     private final HeaderPanel header = new HeaderPanel();
     private final TablePanel table = new TablePanel();
@@ -34,6 +35,19 @@ public class WarGui extends JPanel implements WarView, Runnable {
         add(controls, BorderLayout.SOUTH);
     }
 
+    private void autoPlay() {
+        new Thread(() -> {
+            while (!model.isGameOver()) {
+                JButton drawBtn = controls.getDrawButton();
+                JButton mBtn = controls.getMobilizeButton();
+                if (drawBtn.isEnabled())
+                    drawBtn.doClick();
+                else
+                    mBtn.doClick();
+            }
+        }).start();
+    }
+
     @Override
     public void run() {
         // create window
@@ -49,6 +63,9 @@ public class WarGui extends JPanel implements WarView, Runnable {
 
         // automatically start a new game
         model.newGame();
+
+        if (AUTO_PLAY)
+            autoPlay();
     }
 
     @Override
