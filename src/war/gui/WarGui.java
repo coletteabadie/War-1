@@ -124,7 +124,8 @@ public class WarGui extends JPanel implements WarView, Runnable {
     @Override
     public void onTurnStart(Card card1, Card card2) {
         // clear "war panel" if displayed
-        table.reset();
+        if (!model.isWar())
+            table.reset();
 
         // show drawn cards
         table.showCards(card1, card2);
@@ -150,14 +151,12 @@ public class WarGui extends JPanel implements WarView, Runnable {
         mobilized1 = card1;
         mobilized2 = card2;
 
-        // hide "battle" pane
-        PlayerPanel p1 = table.getPlayerPanel(true), p2 = table.getPlayerPanel(false);
-        p1.getBattlePanel().setVisible(false);
-        p2.getBattlePanel().setVisible(false);
+        // reset table
+        table.reset();
 
         // show card back in "war" pane
-        p1.getWarPanel().showBack();
-        p2.getWarPanel().showBack();
+        table.getPlayerPanel(true).getWarPanel().showBack();
+        table.getPlayerPanel(false).getWarPanel().showBack();
 
         // disable mobilize button and enable draw button
         controls.setAction("Draw", model::nextTurn);
