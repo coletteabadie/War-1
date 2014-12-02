@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a JPanel that contains the field of play.
  *
  * @author Walker Crouse

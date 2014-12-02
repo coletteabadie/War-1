@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a playing card that is comparable to other cards. A card is considered greater than another card if it's
  * rank is greater than the other.
  *

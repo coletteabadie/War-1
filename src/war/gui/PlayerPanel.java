@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a players "hand"
  *
  * @author Walker Crouse

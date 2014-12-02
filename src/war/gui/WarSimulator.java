@@ -5,7 +5,7 @@ import war.WarModel;
 import javax.swing.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a runnable that can simulate a game.
  *
  * @author Walker Crouse

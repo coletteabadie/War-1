@@ -1,7 +1,7 @@
 package war;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a visual representation of the War card game for a user to see.
  *
  * @author Walker Crouse

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a participant in "War".
  *
  * @author Walker Crouse

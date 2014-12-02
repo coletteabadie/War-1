@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * GUI Implementation of "War" card game.
  *
  * @author Walker Crouse

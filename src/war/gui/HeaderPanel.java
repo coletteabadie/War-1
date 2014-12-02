@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Assignment #10
+ * A<strong>Assignment #10</strong><br>
  * Represents the content at the top of the window for the application.
  *
  * @author Walker Crouse

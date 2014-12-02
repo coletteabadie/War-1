@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a panel that can show any card.
  *
  * @author Walker Crouse

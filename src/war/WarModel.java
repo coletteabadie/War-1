@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents the actually progression and handling of a War game and it's rules.
  *
  * @author Walker Crouse

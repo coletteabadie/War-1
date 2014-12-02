@@ -5,7 +5,7 @@ import war.Card;
 import javax.swing.*;
 
 /**
- * Assignment #10
+ * <strong>Assignment #10</strong><br>
  * Represents a playing card that can be displayed on a GUI.
  *
  * @author Walker Crouse
