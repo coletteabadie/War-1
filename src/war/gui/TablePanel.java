@@ -39,8 +39,10 @@ public class TablePanel extends JPanel {
      * Resets the table to a blank state.
      */
     public void reset() {
+        player1.getDeck().setVisible(true);
         player1.getBattlePanel().setVisible(false);
         player1.getWarPanel().setVisible(false);
+        player2.getDeck().setVisible(true);
         player2.getBattlePanel().setVisible(false);
         player2.getWarPanel().setVisible(false);
     }

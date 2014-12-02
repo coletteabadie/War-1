@@ -20,6 +20,8 @@ public class PlayerPanel extends JPanel {
      */
     public PlayerPanel(boolean p1) {
         super(new GridLayout(1, 3));
+        if (!p1)
+            setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         setOpaque(false);
 
         int ha = p1 ? SwingConstants.LEFT : SwingConstants.RIGHT;

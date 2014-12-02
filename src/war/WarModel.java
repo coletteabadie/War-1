@@ -72,9 +72,6 @@ public class WarModel {
         Card card1 = player1.drawCard();
         Card card2 = player2.drawCard();
 
-        System.out.println("Card 1 : " + card1);
-        System.out.println("Card 2 : " + card2);
-
         // add cards to pool
         pool.add(card1);
         pool.add(card2);

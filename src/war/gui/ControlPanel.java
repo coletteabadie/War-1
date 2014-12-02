@@ -12,7 +12,8 @@ import java.awt.*;
  * @author Walker Crouse
  */
 public class ControlPanel extends JPanel {
-    private JButton drawBtn = new JButton("Draw"), mobilizeButton = new JButton("Mobilize");
+    private JButton actionBtn = new JButton();
+    private Runnable action;
     private JLabel cardCount1 = new JLabel("26"), cardCount2 = new JLabel("26");
     private final WarModel model;
 
@@ -24,6 +25,7 @@ public class ControlPanel extends JPanel {
     public ControlPanel(WarModel model, WarGui gui) {
         super(new BorderLayout());
         this.model = model;
+        setAction("Draw", model::nextTurn);
 
         // add stat counter
         JPanel stats = new JPanel(new BorderLayout());
@@ -34,25 +36,18 @@ public class ControlPanel extends JPanel {
         // add buttons
         JPanel buttons = new JPanel(new BorderLayout());
 
-        // add "draw" button
-        buttons.add(drawBtn, BorderLayout.NORTH);
-        drawBtn.addActionListener(a -> model.nextTurn());
-
-        // add "mobilize" button
-        mobilizeButton.setEnabled(false);
-        buttons.add(mobilizeButton, BorderLayout.CENTER);
-        mobilizeButton.addActionListener(a -> model.mobilize());
-
-        JPanel bottom = new JPanel(new BorderLayout());
+        // add action button
+        buttons.add(actionBtn, BorderLayout.CENTER);
+        actionBtn.addActionListener(a -> action.run());
 
         // add "new game" button
         JButton newGameBtn = new JButton("New Game");
-        bottom.add(newGameBtn, BorderLayout.WEST);
+        buttons.add(newGameBtn, BorderLayout.WEST);
         newGameBtn.addActionListener(a -> model.newGame());
 
         // add "autoplay" button
         JButton autoPlayBtn = new JButton("Auto-play");
-        bottom.add(autoPlayBtn, BorderLayout.EAST);
+        buttons.add(autoPlayBtn, BorderLayout.EAST);
         autoPlayBtn.addActionListener(a -> {
             if (gui.getActiveSimulator() == null) {
                 gui.startSimulator();
@@ -62,8 +57,6 @@ public class ControlPanel extends JPanel {
                 autoPlayBtn.setText("Auto-play");
             }
         });
-
-        buttons.add(bottom, BorderLayout.SOUTH);
 
         add(buttons, BorderLayout.CENTER);
     }
@@ -77,20 +70,21 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Returns the "Draw" button.
+     * Returns the action button.
      *
-     * @return draw button
+     * @return action button
      */
-    public JButton getDrawButton() {
-        return drawBtn;
+    public JButton getActionButton() {
+        return actionBtn;
     }
 
     /**
-     * Returns the "Mobilize" button.
+     * Sets the action to run when the button is clicked.
      *
-     * @return mobilize button
+     * @param action to run
      */
-    public JButton getMobilizeButton() {
-        return mobilizeButton;
+    public void setAction(String name, Runnable action) {
+        actionBtn.setText(name);
+        this.action = action;
     }
 }

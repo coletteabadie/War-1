@@ -106,7 +106,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
     @Override
     public void onGameStart() {
         // enable draw button and update stats
-        controls.getDrawButton().setEnabled(true);
+        controls.getActionButton().setEnabled(true);
         controls.updateStats();
 
         // clear board
@@ -135,10 +135,8 @@ public class WarGui extends JPanel implements WarView, Runnable {
     public void onWarStart() {
         // set title
         header.setMessage(FRAME_TITLE);
-        // disable draw button
-        controls.getDrawButton().setEnabled(false);
-        // enable mobilize button
-        controls.getMobilizeButton().setEnabled(true);
+        // set action to "mobilize"
+        controls.setAction("Mobilize", model::mobilize);
         // update stats
         controls.updateStats();
     }
@@ -161,16 +159,18 @@ public class WarGui extends JPanel implements WarView, Runnable {
         p2.getWarPanel().showBack();
 
         // disable mobilize button and enable draw button
-        controls.getMobilizeButton().setEnabled(false);
-        controls.getDrawButton().setEnabled(true);
+        controls.setAction("Draw", model::nextTurn);
         controls.updateStats();
     }
 
     @Override
     public void onWarEnd() {
-        // reveal hidden cards
-        table.getPlayerPanel(true).getWarPanel().showCard(mobilized1);
-        table.getPlayerPanel(false).getWarPanel().showCard(mobilized2);
+        // reveal hidden cards next time action button is clicked
+        controls.setAction("Reveal", () -> {
+            table.getPlayerPanel(true).getWarPanel().showCard(mobilized1);
+            table.getPlayerPanel(false).getWarPanel().showCard(mobilized2);
+            controls.setAction("Draw", model::nextTurn);
+        });
     }
 
     @Override
@@ -183,7 +183,7 @@ public class WarGui extends JPanel implements WarView, Runnable {
     @Override
     public void onGameOver(Player winner) {
         header.setMessage(HeaderPanel.MESSAGE_GAME_OVER, winner.getName());
-        controls.getDrawButton().setEnabled(false);
+        controls.getActionButton().setEnabled(false);
         controls.updateStats();
     }
 
