@@ -5,8 +5,11 @@ import war.Player;
 import war.WarModel;
 import war.WarView;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * <strong>Assignment #10</strong><br>
