@@ -26,15 +26,6 @@ public class Player {
     }
 
     /**
-     * Returns this player's deck of cards.
-     *
-     * @return list of cards
-     */
-    public List<Card> getDeck() {
-        return deck;
-    }
-
-    /**
      * Returns true if the player has any cards left.
      *
      * @return true if has any cards left
