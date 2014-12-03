@@ -17,6 +17,11 @@ public class Card implements Comparable<Card> {
     public static final int RANK_KING = 13;
     public static final int RANK_ACE = 14;
 
+    public static final int RANK_FIRST = 2;
+    public static final int RANK_LAST = RANK_ACE;
+
+    public static final int STANDARD_DECK_SIZE = 52;
+
     protected final int rank;
     protected final Suit suit;
     protected boolean faceUp = true;
@@ -40,8 +45,8 @@ public class Card implements Comparable<Card> {
      * @return list of all cards
      */
     public static List<Card> all() {
-        List<Card> cards = new ArrayList<>(52);
-        for (int rank = 2; rank <= RANK_ACE; rank++) {
+        List<Card> cards = new ArrayList<>(STANDARD_DECK_SIZE);
+        for (int rank = RANK_FIRST; rank <= RANK_LAST; rank++) {
             for (Suit suit : Suit.values())
                 cards.add(new Card(rank, suit));
         }
